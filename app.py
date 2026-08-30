@@ -19,6 +19,7 @@ def predict():
         data = [message]
         vect = cv.transform(data).toarray()
         my_prediction = clf.predict(vect)
+        print("DEBUG PREDICTION:", my_prediction) # <-- Yeh add karo
         return render_template('result.html', prediction=my_prediction)
 
 if __name__ == '__main__':

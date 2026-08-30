@@ -1,39 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Home</title>
-	<!-- <link rel="stylesheet" type="text/css" href="../static/css/styles.css"> -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam SMS Detector | ML Web App</title>
+    <!-- Tailwind CSS CDN for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-slate-100 min-h-screen flex flex-col justify-between">
 
-	<header>
-		<div class="container">
-		<div id="brandname">
-			Machine Learning App with Flask
-		</div>
-		<h2>Spam Detector For SMS Messages</h2>
-		
-	</div>
-	</header>
+    <!-- Navbar / Header -->
+    <header class="w-full py-6 px-8 border-b border-slate-800 flex justify-between items-center max-w-5xl mx-auto">
+        <div class="flex items-center space-x-3">
+            <span class="bg-indigo-600 p-2 rounded-xl text-xl font-bold shadow-lg shadow-indigo-500/30">🛡️</span>
+            <span class="text-xl font-semibold tracking-wide">SpamShield AI</span>
+        </div>
+        <span class="text-xs px-3 py-1 bg-slate-800 text-slate-400 rounded-full border border-slate-700">Try It Out</span>
+    </header>
 
-	<div class="ml-container">
+    <!-- Main Container -->
+    <main class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-xl w-full bg-slate-800/60 backdrop-blur-xl border border-slate-700/60 rounded-3xl p-8 shadow-2xl shadow-black/50">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-extrabold text-white tracking-tight mb-2">SMS Spam Detection</h1>
+                <p class="text-slate-400 text-sm">Paste any suspicious text message below to check if it's Spam or Safe using Naive Bayes classifier.</p>
+            </div>
 
-		<form action="{{ url_for('predict')}}" method="POST">
-		<p>Enter Your Message Here</p>
-		<!-- <input type="text" name="comment"/> -->
-		<textarea name="message" rows="4" cols="50"></textarea>
-		<br/>
+            <form action="/predict" method="POST" class="space-y-6">
+                <div>
+                    <label for="message" class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Enter Message Content</label>
+                    <textarea 
+                        name="message" 
+                        id="message" 
+                        rows="4" 
+                        required
+                        placeholder="e.g. Congratulations! You've won a $1,000 Walmart gift card. Click here to claim..."
+                        class="w-full bg-slate-900/80 border border-slate-700 rounded-2xl p-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm resize-none shadow-inner"
+                    ></textarea>
+                </div>
 
-		<input type="submit" class="btn-info" value="predict">
-		
-	</form>
-		
-	</div>
+                <button 
+                    type="submit" 
+                    class="w-full py-4 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold rounded-2xl shadow-lg shadow-indigo-600/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-sm tracking-wide"
+                >
+                    Analyze Message
+                </button>
+            </form>
+        </div>
+    </main>
 
-	
-	
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 text-slate-500 text-xs border-t border-slate-800/60">
+        Built with Flask, Scikit-Learn & Tailwind CSS
+    </footer>
 
 </body>
 </html>
